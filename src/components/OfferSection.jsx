@@ -218,21 +218,50 @@ const ApplicationForm = () => {
     formData.append('subject', '50% Discount Application - Pair to Pixel');
     formData.append('services_needed', selectedServices.join(', '));
 
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData,
-      });
-      const data = await response.json();
+    const googleScriptUrl = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
 
-      if (data.success) {
+    try {
+      // Submit to both Web3Forms and Google Sheets in parallel
+      const [web3Response, sheetResponse] = await Promise.allSettled([
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData,
+        }),
+        googleScriptUrl && googleScriptUrl !== 'your_web_app_url_here'
+          ? fetch(googleScriptUrl, {
+              method: 'POST',
+              body: formData,
+              mode: 'no-cors', // Required for Google Apps Script
+            })
+          : Promise.resolve({ status: 'fulfilled', value: { ok: true } }),
+      ]);
+
+      // Check Web3Forms response
+      let web3Success = false;
+      let errorMessage = 'Something went wrong!';
+      if (web3Response.status === 'fulfilled' && web3Response.value.ok) {
+        try {
+          const data = await web3Response.value.json();
+          web3Success = data.success;
+          errorMessage = data.message || errorMessage;
+        } catch {
+          web3Success = web3Response.value.ok;
+        }
+      }
+
+      // Google Apps Script returns opaque response with no-cors mode
+      // We assume success if no network error occurred
+      const sheetSuccess = sheetResponse.status === 'fulfilled';
+
+      // Show success if at least Web3Forms succeeded (email notification)
+      if (web3Success) {
         setResult('Application Submitted Successfully! We will contact you soon.');
         e.target.reset();
         setSelectedServices([]);
         setAgreed(false);
         setTimeout(() => setResult(''), 6000);
       } else {
-        setResult(data.message || 'Something went wrong!');
+        setResult(errorMessage);
       }
     } catch {
       setResult('Error submitting form. Please check your internet connection.');

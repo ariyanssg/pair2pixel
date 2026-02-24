@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.claude/settings.local.json
+.omc/project-memory.json
+.omc/sessions/531543d3-05b1-48ba-b6b6-15164bed75e8.json
+.omc/state/agent-replay-07d34007-6d4b-4df4-a918-6c18789eb872.jsonl
+.omc/state/agent-replay-531543d3-05b1-48ba-b6b6-15164bed75e8.jsonl
+.omc/state/subagent-tracking.json
