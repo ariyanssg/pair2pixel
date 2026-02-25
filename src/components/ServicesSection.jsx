@@ -54,7 +54,7 @@ export const services = [
 const ServiceCard = ({ icon, title, description }) => (
   <div className="group relative bg-gradient-to-br from-[#1a1a1a] to-[#0d0d0d] border border-gray-800/50 rounded-xl p-4 sm:p-5 hover:border-red-600/50 transition-all duration-300 hover:-translate-y-1">
     <div className="flex items-start gap-3 sm:gap-4">
-      <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-red-600/10 rounded-lg flex items-center justify-center group-hover:bg-red-600/20 transition-colors">
+      <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-red-500/20 rounded-lg flex items-center justify-center group-hover:bg-red-500/30 transition-colors">
         <img
           src={icon}
           alt={title}

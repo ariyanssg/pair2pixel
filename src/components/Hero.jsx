@@ -1,19 +1,12 @@
-// src/components/Hero.jsx
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import heroVideo from '../assets/heroBG_video.mp4';
 
 const Hero = () => {
   const videoRef = useRef(null);
   const heroSectionRef = useRef(null);
 
- 
-  const phoneNumber = "8801604176228";  
-  const message = "Hi Pair to Pixel, I want to start a project!"; // ডিফল্ট মেসেজ
-  
-  // WhatsApp লিংক তৈরি করা হচ্ছে
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
-useEffect(() => {
+  useEffect(() => {
     const sectionRef = heroSectionRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -43,7 +36,6 @@ useEffect(() => {
 
   return (
     <div ref={heroSectionRef} className="relative w-full h-screen overflow-hidden bg-black text-white">
-      {/* Video Background */}
       <video
         ref={videoRef}
         className="absolute top-0 left-0 w-full h-full object-cover opacity-50 sm:object-cover object-center"
@@ -56,41 +48,105 @@ useEffect(() => {
         Your browser does not support the video tag.
       </video>
 
-      {/* Hero Content */}
-      <div className="relative z-10 flex items-center justify-start h-full px-4 sm:px-6 md:px-12 lg:px-24 xl:px-48">
-<div className="w-full max-w-lg space-y-3 sm:space-y-4 md:space-y-5">
-          <div className="space-y-1.5 sm:space-y-2">
-            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight leading-tight">
-              Creative Design Agency<br /><span className="text-red-500">Pair to Pixel</span>
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl font-light italic text-orange-400">
-              3D Animation & Digital Services
-            </p>
-          </div>
-          <p className="text-xs sm:text-sm font-light leading-relaxed text-gray-300">
-            Transform your brand with stunning 3D product modeling, motion graphics, and premium design solutions. We create scroll-stopping visuals that build trust and drive conversions for businesses worldwide.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-            
-            {/* ২. এই বাটনটি এখন WhatsApp এ নিয়ে যাবে */}
-            <a 
-              href={whatsappUrl} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto"
-            > 
-              <button className="w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-md font-bold text-white bg-red-600 rounded-md hover:bg-red-700 transition-colors duration-200 cursor-pointer">
-                Start Your Project
-              </button>
-            </a>
+      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent" />
 
-            {/* Claim 50% Offer - scrolls to offer section */}
-<a href='#offer-form' className="w-full sm:w-auto">
-              <button className="w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-md font-bold text-white bg-gray-600 rounded-md hover:bg-gray-700 transition-colors duration-200 cursor-pointer">
-                Claim 50% Offer
-              </button>
+      <div className="relative z-10 flex items-center justify-center h-full px-4 sm:px-6 md:px-12 lg:px-24">
+        <div className="w-full max-w-3xl text-center space-y-6 sm:space-y-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-600/20 border border-red-500/30 backdrop-blur-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+              </span>
+              <span className="text-[16px] font-semibold text-white">
+                Limited Offer - 50% Off for New Clients
+              </span>
+            </span>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight"
+            style={{ fontFamily: "'Baloo Bhai', cursive" }}
+          >
+            Get{' '}
+            <span className="bg-gradient-to-r from-red-500 via-orange-400 to-red-500 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(239,68,68,0.5)]">
+              50% OFF
+            </span>
+            {' '}Your First Project!
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-[24px] font-normal text-gray-200 max-w-2xl mx-auto leading-relaxed"
+          >
+            Upgrade your brand with strategic 3D animation, motion Graphics, and premium design.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <a href="#offer-form">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+                className="relative px-8 py-4 text-lg font-bold text-white rounded-xl overflow-hidden group cursor-pointer"
+                style={{
+                  background: 'linear-gradient(135deg, #dc2626 0%, #ea580c 50%, #dc2626 100%)',
+                  backgroundSize: '200% 200%',
+                  boxShadow: '0 4px 30px rgba(220, 38, 38, 0.4), 0 0 60px rgba(220, 38, 38, 0.2)',
+                }}
+              >
+                <span className="relative z-10">Claim My 50% Discount</span>
+                <span
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{
+                    background: 'linear-gradient(135deg, #b91c1c 0%, #c2410c 50%, #b91c1c 100%)',
+                  }}
+                />
+              </motion.button>
             </a>
-          </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="pt-8"
+          >
+            <div className="flex items-center justify-center gap-4 text-sm text-gray-400">
+              <div className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span>Fast Delivery</span>
+              </div>
+              <span className="text-gray-600">|</span>
+              <div className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span>Premium Quality</span>
+              </div>
+              <span className="text-gray-600">|</span>
+              <div className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span>100% Satisfaction</span>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </div>
