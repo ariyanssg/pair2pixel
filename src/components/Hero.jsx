@@ -76,7 +76,7 @@ const Hero = () => {
             style={{ fontFamily: "'Baloo Bhai', cursive" }}
           >
             Get{' '}
-            <span className="bg-gradient-to-r from-red-500 via-orange-400 to-red-500 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(239,68,68,0.5)]">
+            <span className="bg-gradient-to-r from-red-600 to-red-500 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(220,38,38,0.5)]">
               50% OFF
             </span>
             {' '}Your First Project!
@@ -100,20 +100,9 @@ const Hero = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
-                className="relative px-8 py-4 text-lg font-bold text-white rounded-xl overflow-hidden group cursor-pointer"
-                style={{
-                  background: 'linear-gradient(135deg, #dc2626 0%, #ea580c 50%, #dc2626 100%)',
-                  backgroundSize: '200% 200%',
-                  boxShadow: '0 4px 30px rgba(220, 38, 38, 0.4), 0 0 60px rgba(220, 38, 38, 0.2)',
-                }}
+                className="px-8 py-4 text-lg font-bold text-white bg-red-600 hover:bg-red-700 rounded-xl transition-colors duration-200 cursor-pointer"
               >
-                <span className="relative z-10">Claim My 50% Discount</span>
-                <span
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{
-                    background: 'linear-gradient(135deg, #b91c1c 0%, #c2410c 50%, #b91c1c 100%)',
-                  }}
-                />
+                Claim My 50% Discount
               </motion.button>
             </a>
           </motion.div>
