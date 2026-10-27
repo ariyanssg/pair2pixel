@@ -1,20 +1,54 @@
-# React + Vite
+# Pair2Pixel
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The website for **Pair2Pixel**, a creative and branding agency (*"pair every pixel with purpose"*). Its product work is shown as interactive 3D models: earbuds, a mouse and a power bank you can rotate right on the page.
 
-Currently, two official plugins are available:
+## Highlights
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **3D product showcase:** GLB models rendered with React Three Fiber and Drei, with lighting and orbit controls
+- **Video hero:** full-bleed background video with animated headline and call to action
+- **Motion throughout:** section reveals and hover states with Framer Motion
+- **Sections:** about, services, "why it matters", team, offers, testimonials and contact
+- **Contact form:** submits through Web3Forms, so no backend is needed
+- **WhatsApp button:** a floating quick-chat link
+- **Responsive:** sidebar navigation on mobile, layouts tuned from phone to desktop
 
-## React Compiler
+## Tech stack
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| | |
+| --- | --- |
+| Framework | React 19, Vite |
+| 3D | Three.js, @react-three/fiber, @react-three/drei |
+| Styling | Tailwind CSS, MUI |
+| Motion | Framer Motion |
+| Icons | Lucide, Heroicons, React Icons |
+| Hosting | Netlify |
 
-## Expanding the ESLint configuration
+## Project structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-"# Pair-To-Pixel" 
-"# Pair-To-Pixel" 
-"# Pair-To-Pixel" 
-"# Pair-To-Pixel" 
+```
+src/
+  components/
+    Hero.jsx               video hero
+    ProductShowcase.jsx    3D model viewer
+    EarbudsModel.jsx       GLB models (earbuds, mouse, power bank)
+    MouseModel.jsx
+    PowerbankModelAlt.jsx
+    ServicesSection.jsx    plus About, Team, Testimonial, OfferSection...
+    Contact.jsx            Web3Forms contact form
+    WhatsAppButton.jsx
+public/models/             .glb assets
+```
+
+## Run locally
+
+```bash
+npm install
+npm run dev       # http://localhost:5173
+npm run build     # production build in dist/
+```
+
+Deploys to Netlify with the settings in `netlify.toml`.
+
+---
+
+Built by [Mahmudul Hassan](https://github.com/ariyanssg)
